@@ -5,7 +5,6 @@ import {
   Before,
   After,
 } from "cypress-cucumber-preprocessor/steps";
-import { EMAIL, PASSWORD } from "../../../support/Constants";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 
 const radomNumber = Math.floor(Math.random() * 100);
@@ -14,7 +13,9 @@ let dataUtils = new SharedDataUtils();
 
 Before(() => {
   cy.visit("https://trello.com/login");
-  cy.loginToTrello(EMAIL, PASSWORD);
+  cy.fixture("data.json").then((data) => {
+    cy.loginToTrello(data.email, data.password);
+  });
 
   // Create Board
   dataUtils.createNewBoard(boardName).as("boardResponse");

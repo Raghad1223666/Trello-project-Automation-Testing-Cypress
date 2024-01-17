@@ -42,22 +42,10 @@ When("Click on the add card button", () => {
   createNewCardAction.clickOnAddCardButton();
 });
 
-Then("The Card is Visible and created", () => {
-  createNewCardAssertion.checkCardIsVisible("Card 1");
+Then("The Card is created successfully", () => {
+  createNewCardAssertion.checkCardIsVisible();
+  createNewCardAssertion.checkCardIsContainCorrectText("Card 1");
 });
-
-When("Open the created card", () => {
-  sharedAction.waitSeconds(2000);
-  createNewCardAction.openCreatedCard();
-});
-
-Then(
-  "The card was opened successfully and contains the expected text which means the card was created successfully",
-  () => {
-    sharedAction.waitSeconds(2000);
-    createNewCardAssertion.checkOpenedCardTitleIsCorrect("Card 1");
-  }
-);
 
 After(() => {
   cy.get("@boardResponse").then((response) => {

@@ -25,6 +25,10 @@ class sharedActions {
     const radomNumber = Math.floor(Math.random() * 100);
     return `Board No.${radomNumber}`;
   }
+
+  back(){
+    cy.go("back");
+  }
 }
 
 export default sharedActions;

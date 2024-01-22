@@ -20,6 +20,11 @@ class sharedActions {
     cy.reload();
     return this;
   }
+
+  boardName() {
+    const radomNumber = Math.floor(Math.random() * 100);
+    return `Board No.${radomNumber}`;
+  }
 }
 
 export default sharedActions;

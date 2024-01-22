@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("loginToTrello", (email, password) => {
+  cy.intercept({url: "/1/resources/templates/categories"}).as("login");
   cy.get("#user").type(email);
   cy.get("#login").click();
   cy.origin(
@@ -35,4 +36,5 @@ Cypress.Commands.add("loginToTrello", (email, password) => {
       cy.get("#login-submit").click();
     }
   );
+
 });

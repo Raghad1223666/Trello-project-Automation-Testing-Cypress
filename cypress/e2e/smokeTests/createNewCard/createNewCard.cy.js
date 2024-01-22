@@ -10,12 +10,13 @@ import sharedActions from "../../../pageObjects/shared/actions.cy";
 import createNewCardActions from "../../../pageObjects/createNewCard/actions.cy";
 import createNewCardAssertions from "../../../pageObjects/createNewCard/assertions.cy";
 
-const radomNumber = Math.floor(Math.random() * 100);
-let boardName = `Raghad Board No.${radomNumber}`;
+
 let dataUtils = new SharedDataUtils();
 let sharedAction = new sharedActions();
 let createNewCardAction = new createNewCardActions();
 let createNewCardAssertion = new createNewCardAssertions();
+
+let boardName = sharedAction.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();
@@ -24,7 +25,7 @@ Before(() => {
 });
 
 Given("Go to the Board", () => {
-  sharedAction.waitSeconds(2000);
+  cy.wait("@login")
   cy.get("@boardResponse").then((response) => {
     sharedAction.visitUrl(response.body.url);
   });

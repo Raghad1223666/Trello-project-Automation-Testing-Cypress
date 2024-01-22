@@ -26,8 +26,8 @@ class sharedActions {
     return `Board No.${radomNumber}`;
   }
 
-  back(){
-    cy.go("back");
+  backToHomePage(){
+    cy.get("[aria-label='Back to home']").click();
   }
 }
 

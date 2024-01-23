@@ -34,6 +34,11 @@ class sharedActions {
     cy.get("[aria-label='Close dialog']").click();
     return this;
   }
+
+  clickOnTemplateCard() {
+    cy.get("[data-testid='list-card']").click();
+    return this;
+  }
 }
 
 export default sharedActions;

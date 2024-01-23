@@ -7,13 +7,13 @@ import {
 } from "cypress-cucumber-preprocessor/steps";
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
-import updateTemplateNameActions from "../../../pageObjects/updateTemplateName/actions.cy";
-import updateTemplateNameAssertions from "../../../pageObjects/updateTemplateName/assertions.cy";
+import hideTemplateFromListActions from "../../../pageObjects/hideTemplateFromList/actions.cy";
+import hideTemplateFromListAssertions from "../../../pageObjects/hideTemplateFromList/assertions.cy";
 
 let sharedAction = new sharedActions();
 let dataUtils = new SharedDataUtils();
-let updateTemplateNameAction = new updateTemplateNameActions();
-let updateTemplateNameAssertion = new updateTemplateNameAssertions();
+let hideTemplateFromListAction = new hideTemplateFromListActions();
+let hideTemplateFromListAssertion = new hideTemplateFromListAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -39,19 +39,21 @@ Given("Go to the Board", () => {
 });
 
 When("Click on the Template card", () => {
-    sharedAction.clickOnTemplateCard();
+  sharedAction.clickOnTemplateCard();
 });
 
-When("Type the new name from Template popup", () => {
-  updateTemplateNameAction.typeNewTemplateName("1{enter}");
+When("Click on the Hide from list button", () => {
+  hideTemplateFromListAction.clickOnTheHideFromListButton();
 });
 
 When("Close Template popup", () => {
   sharedAction.closeTemplatePopup();
 });
 
-Then("The Template name is updated correctly", () => {
-  updateTemplateNameAssertion.templateContainExpectedText("Raghad Template1");
+Then("The Template is hidden from the list successfully", () => {
+  hideTemplateFromListAssertion.checkThatTemplateHiddenFromList(
+    "Raghad Template"
+  );
 });
 
 After(() => {

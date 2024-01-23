@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "a9e5cf93-9173-4de6-b736-a35dfb16127c",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16492362",
+		"_collection_link": "https://blue-meteor-97506.postman.co/workspace/QA-testing~2425e8b3-9036-4c41-8ce5-73b7b784b929/collection/16492362-a9e5cf93-9173-4de6-b736-a35dfb16127c?action=share&source=collection_link&creator=16492362"
+	},
+	"item": [
+		{
+			"name": "Create Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"boardId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Verify that Board name is correct\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Raghad Board\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/?name=Raghad Board&key={{APIKEY}}&token={{APITOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Raghad Board"
+						},
+						{
+							"key": "key",
+							"value": "{{APIKEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APITOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lists In The Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"listId\", jsonData[0].id);\r",
+							"\r",
+							"pm.test(\"Verify that list name is correct\", function () {\r",
+							"    pm.expect(jsonData[0].name).to.eql(\"To Do\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{boardId}}/lists?key={{APIKEY}}&token={{APITOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{boardId}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{APIKEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APITOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"cardId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Verify that card name is correct\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Raghad Card\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Raghad Card\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/cards?idList={{listId}}&key={{APIKEY}}&token={{APITOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "idList",
+							"value": "{{listId}}"
+						},
+						{
+							"key": "key",
+							"value": "{{APIKEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APITOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Checklist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"let checklistNameCol = ;\r",
+							"pm.test(\"Verify that checklist name is correct \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"checklistName\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let checklistName = \"Raghad check List \" + parseInt(Math.random() * 100);\r",
+							"pm.collectionVariables.set(\"checklistName\", checklistName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{checklistName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/checklists?idCard={{cardId}}&key={{APIKEY}}&token={{APITOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"checklists"
+					],
+					"query": [
+						{
+							"key": "idCard",
+							"value": "{{cardId}}"
+						},
+						{
+							"key": "key",
+							"value": "{{APIKEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{APITOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"",
+					"pm.test(\"Response time is less than 3000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"});",
+					"",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APIKEY",
+			"value": "1389323c04141ab5f03cbd3cd562333e"
+		},
+		{
+			"key": "APITOKEN",
+			"value": "ATTAf38c477640b16a4d4e275c8814269511ac45b78d0a394fc007ff31d9ea37362cA58BA58A"
+		},
+		{
+			"key": "APIKEY",
+			"value": ""
+		},
+		{
+			"key": "boardId",
+			"value": ""
+		},
+		{
+			"key": "listId",
+			"value": ""
+		},
+		{
+			"key": "cardId",
+			"value": ""
+		},
+		{
+			"key": "checklistName",
+			"value": ""
+		}
+	]
+}

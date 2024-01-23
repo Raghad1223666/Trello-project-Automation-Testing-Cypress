@@ -53,6 +53,6 @@ After(() => {
     //Delete Board
     dataUtils.deleteCreatedBoard(response.body.id);
     sharedAction.reloadPage();
-    sharedAction.back();
+    sharedAction.backToHomePage();
   });
 });

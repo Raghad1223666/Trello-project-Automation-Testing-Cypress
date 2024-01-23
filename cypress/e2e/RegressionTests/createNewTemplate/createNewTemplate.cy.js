@@ -8,12 +8,12 @@ import {
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import createNewTemplateActions from "../../../pageObjects/createNewTemplate/actions.cy";
-import createNewTemplateAssertions from "../../../pageObjects/createNewTemplate/assertions.cy";
-
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
+// checkTemplateContainExpectedText
 let dataUtils = new SharedDataUtils();
 let sharedAction = new sharedActions();
+let sharedAssertion = new sharedAssertions();
 let createNewTemplateAction = new createNewTemplateActions();
-let createNewTemplateAssertion = new createNewTemplateAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -47,9 +47,7 @@ When("Click on the Add Button", () => {
 });
 
 Then("The Template created successfully", () => {
-  createNewTemplateAssertion.checkThatTemplateCreatedSuccessfully(
-    "Card Template"
-  );
+  sharedAssertion.checkTemplateContainExpectedText("Card Template");
 });
 
 After(() => {

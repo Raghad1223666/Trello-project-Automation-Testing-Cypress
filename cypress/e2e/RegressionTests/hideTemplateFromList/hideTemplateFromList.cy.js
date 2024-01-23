@@ -51,9 +51,7 @@ When("Close Template popup", () => {
 });
 
 Then("The Template is hidden from the list successfully", () => {
-  sharedAssertion.checkThatListNotContainCard(
-    "Raghad Template"
-  );
+  sharedAssertion.checkThatListNotContainCard("Raghad Template");
 });
 
 After(() => {

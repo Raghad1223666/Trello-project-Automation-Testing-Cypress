@@ -19,7 +19,7 @@ class SharedDataUtils {
     return cy.request({
       method: "GET",
       url: `/1/boards/${boardId}/lists?key=${APIKEY}&token=${APITOKEN}`,
-      header:'Accept: application/json'
+      header: "Accept: application/json",
     });
   }
 
@@ -27,12 +27,10 @@ class SharedDataUtils {
     return cy.request({
       method: "POST",
       url: `/1/cards?idList=${listId}&key=${APIKEY}&token=${APITOKEN}`,
-      header:'Accept: application/json',
-      body: {name: cardName, isTemplate}
+      header: "Accept: application/json",
+      body: { name: cardName, isTemplate },
     });
   }
-
-
 }
 
 export default SharedDataUtils;

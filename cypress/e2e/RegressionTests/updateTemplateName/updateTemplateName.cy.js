@@ -8,12 +8,12 @@ import {
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import updateTemplateNameActions from "../../../pageObjects/updateTemplateName/actions.cy";
-import updateTemplateNameAssertions from "../../../pageObjects/updateTemplateName/assertions.cy";
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
 
 let sharedAction = new sharedActions();
+let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let updateTemplateNameAction = new updateTemplateNameActions();
-let updateTemplateNameAssertion = new updateTemplateNameAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -39,7 +39,7 @@ Given("Go to the Board", () => {
 });
 
 When("Click on the Template card", () => {
-    sharedAction.clickOnTheCard();
+  sharedAction.clickOnTheCard();
 });
 
 When("Type the new name from Template popup", () => {
@@ -51,7 +51,7 @@ When("Close Template popup", () => {
 });
 
 Then("The Template name is updated correctly", () => {
-  updateTemplateNameAssertion.templateContainExpectedText("Raghad Template1");
+  sharedAssertion.checkTemplateContainExpectedText("Raghad Template1");
 });
 
 After(() => {

@@ -27,8 +27,7 @@ Before(() => {
   });
   // Create New Card
   cy.get("@listsOnBoardResponse").then((response) => {
-    dataUtils
-      .createNewCard(response.body[0].id, "Raghad Card");
+    dataUtils.createNewCard(response.body[0].id, "Raghad Card");
   });
 });
 

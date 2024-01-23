@@ -18,7 +18,6 @@ class createNewTemplateActions {
     cy.get("[data-testid='new-template-card-submit-button']").click();
     return this;
   }
-
 }
 
 export default createNewTemplateActions;

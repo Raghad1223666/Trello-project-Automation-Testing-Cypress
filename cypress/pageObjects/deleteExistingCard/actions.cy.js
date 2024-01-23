@@ -1,5 +1,4 @@
 class deleteExistingCardActions {
-
   clickArchiveButton() {
     cy.get("a[title='Archive']").click();
     return this;

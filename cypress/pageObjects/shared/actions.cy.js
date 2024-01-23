@@ -26,7 +26,7 @@ class sharedActions {
     return `Board No.${radomNumber}`;
   }
 
-  backToHomePage(){
+  backToHomePage() {
     cy.get("[aria-label='Back to home']").click();
   }
 
@@ -38,6 +38,10 @@ class sharedActions {
   clickOnTemplateCard() {
     cy.get("[data-testid='list-card']").click();
     return this;
+  }
+
+  typeListName(listName) {
+    cy.get("[data-testid='list-name-textarea']").last().type(listName);
   }
 }
 

@@ -9,8 +9,10 @@ import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import createNewListActions from "../../../pageObjects/createNewList/actions.cy";
 import createNewListAssertions from "../../../pageObjects/createNewList/assertions.cy";
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
 
 let sharedAction = new sharedActions();
+let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let createNewListAction = new createNewListActions();
 let createNewListAssertion = new createNewListAssertions();
@@ -37,7 +39,7 @@ When("Click on the Add another list", () => {
 });
 
 When("Enter list title", () => {
-  createNewListAction.typeListName("Raghad List");
+  sharedAction.typeListName("Raghad List");
 });
 
 When("Click on the Add list button", () => {
@@ -46,7 +48,7 @@ When("Click on the Add list button", () => {
 
 Then("The list Added successfully", () => {
   createNewListAssertion.checkListIsVisible();
-  createNewListAssertion.checkListIsContainCorrectText("Raghad List");
+  sharedAssertion.checkListNameHasCorrectText("Raghad List");
 });
 
 After(() => {

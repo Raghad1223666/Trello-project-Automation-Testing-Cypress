@@ -1,11 +1,7 @@
 class updateListNameActions {
   clickOnListName() {
-    cy.get("[data-testid='list-name']").first().click();
+    cy.get("[data-testid='list-name']").last().click();
     return this;
-  }
-
-  typeNewListName(listName) {
-    cy.get("[data-testid='list-name-textarea']").first().type(listName);
   }
 }
 

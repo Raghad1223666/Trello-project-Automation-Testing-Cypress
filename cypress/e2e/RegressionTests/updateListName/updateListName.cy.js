@@ -8,12 +8,12 @@ import {
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import updateListNameActions from "../../../pageObjects/updateListName/actions.cy";
-import updateListNameAssertions from "../../../pageObjects/updateListName/assertions.cy";
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
 
 let sharedAction = new sharedActions();
+let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let updateListNameAction = new updateListNameActions();
-let updateListNameAssertion = new updateListNameAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -35,11 +35,11 @@ When("Click on the List name", () => {
 });
 
 When("Type the new name", () => {
-  updateListNameAction.typeNewListName("QA Testing{enter}");
+  sharedAction.typeListName("QA Testing{enter}");
 });
 
 Then("The List name is updated correctly", () => {
-  updateListNameAssertion.checkListNameHasCorrectText("QA Testing");
+  sharedAssertion.checkListNameHasCorrectText("QA Testing");
 });
 
 After(() => {

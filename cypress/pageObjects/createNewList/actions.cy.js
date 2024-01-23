@@ -4,11 +4,6 @@ class createNewListActions {
     return this;
   }
 
-  typeListName(listName) {
-    cy.get("[data-testid='list-name-textarea']").last().type(listName);
-    return this;
-  }
-
   clickAddListButton() {
     cy.get("[data-testid='list-composer-add-list-button']").click();
     return this;

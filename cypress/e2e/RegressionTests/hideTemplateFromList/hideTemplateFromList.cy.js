@@ -8,12 +8,12 @@ import {
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import hideTemplateFromListActions from "../../../pageObjects/hideTemplateFromList/actions.cy";
-import hideTemplateFromListAssertions from "../../../pageObjects/hideTemplateFromList/assertions.cy";
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
 
 let sharedAction = new sharedActions();
+let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let hideTemplateFromListAction = new hideTemplateFromListActions();
-let hideTemplateFromListAssertion = new hideTemplateFromListAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -39,7 +39,7 @@ Given("Go to the Board", () => {
 });
 
 When("Click on the Template card", () => {
-  sharedAction.clickOnTemplateCard();
+  sharedAction.clickOnTheCard();
 });
 
 When("Click on the Hide from list button", () => {
@@ -51,7 +51,7 @@ When("Close Template popup", () => {
 });
 
 Then("The Template is hidden from the list successfully", () => {
-  hideTemplateFromListAssertion.checkThatTemplateHiddenFromList(
+  sharedAssertion.checkThatListNotContainCard(
     "Raghad Template"
   );
 });

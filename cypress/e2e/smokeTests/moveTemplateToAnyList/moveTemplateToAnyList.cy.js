@@ -39,7 +39,7 @@ Given("Go to the Board", () => {
 });
 
 When("Click on the Template", () => {
-  sharedAction.clickOnTemplateCard();
+  sharedAction.clickOnTheCard();
 });
 
 When("Click on the Move Label", () => {

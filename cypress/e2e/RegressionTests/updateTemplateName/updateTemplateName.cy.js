@@ -39,7 +39,7 @@ Given("Go to the Board", () => {
 });
 
 When("Click on the Template card", () => {
-    sharedAction.clickOnTemplateCard();
+    sharedAction.clickOnTheCard();
 });
 
 When("Type the new name from Template popup", () => {

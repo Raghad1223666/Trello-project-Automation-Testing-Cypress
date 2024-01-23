@@ -8,12 +8,12 @@ import {
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import deleteExistingCardActions from "../../../pageObjects/deleteExistingCard/actions.cy";
-import deleteExistingCardAssertions from "../../../pageObjects/deleteExistingCard/assertions.cy";
+import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
 
 let sharedAction = new sharedActions();
 let dataUtils = new SharedDataUtils();
+let sharedAssertion = new sharedAssertions();
 let deleteExistingCardAction = new deleteExistingCardActions();
-let deleteExistingCardAssertion = new deleteExistingCardAssertions();
 
 let boardName = sharedAction.boardName();
 
@@ -28,8 +28,7 @@ Before(() => {
   // Create New Card
   cy.get("@listsOnBoardResponse").then((response) => {
     dataUtils
-      .createNewCard(response.body[0].id, "Raghad Card")
-      .as("cardResponse");
+      .createNewCard(response.body[0].id, "Raghad Card");
   });
 });
 
@@ -41,7 +40,7 @@ Given("Go to the Board", () => {
 });
 
 When("Open the existing card", () => {
-  deleteExistingCardAction.openExistingCard();
+  sharedAction.clickOnTheCard();
 });
 
 When("Click on the Archive Button", () => {
@@ -57,7 +56,7 @@ When("Click on the Delete Button from confirmation popup", () => {
 });
 
 Then("The card deleted successfully", () => {
-  deleteExistingCardAssertion.checkThatListNotContainDeletedCard("Raghad Card");
+  sharedAssertion.checkThatListNotContainCard("Raghad Card");
 });
 
 After(() => {

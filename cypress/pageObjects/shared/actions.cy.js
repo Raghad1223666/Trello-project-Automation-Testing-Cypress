@@ -35,7 +35,7 @@ class sharedActions {
     return this;
   }
 
-  clickOnTemplateCard() {
+  clickOnTheCard() {
     cy.get("[data-testid='list-card']").click();
     return this;
   }

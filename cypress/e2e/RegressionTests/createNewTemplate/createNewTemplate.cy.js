@@ -9,7 +9,7 @@ import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import createNewTemplateActions from "../../../pageObjects/createNewTemplate/actions.cy";
 import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
-// checkTemplateContainExpectedText
+
 let dataUtils = new SharedDataUtils();
 let sharedAction = new sharedActions();
 let sharedAssertion = new sharedAssertions();

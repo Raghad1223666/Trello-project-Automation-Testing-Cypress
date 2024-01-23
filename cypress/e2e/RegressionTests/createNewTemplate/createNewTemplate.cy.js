@@ -53,7 +53,7 @@ Then("The Template created successfully", () => {
 });
 
 After(() => {
-  createNewTemplateAction.closeTemplate();
+  sharedAction.closeTemplatePopup();
   cy.get("@boardResponse").then((response) => {
     //Delete Board
     dataUtils.deleteCreatedBoard(response.body.id);

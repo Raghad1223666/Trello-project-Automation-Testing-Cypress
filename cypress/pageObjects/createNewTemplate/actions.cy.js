@@ -19,9 +19,6 @@ class createNewTemplateActions {
     return this;
   }
 
-  closeTemplate() {
-    cy.get("[aria-label='Close dialog']").click();
-  }
 }
 
 export default createNewTemplateActions;

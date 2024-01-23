@@ -23,12 +23,12 @@ class SharedDataUtils {
     });
   }
 
-  createNewCard(listId, cardName) {
+  createNewCard(listId, cardName, isTemplate) {
     return cy.request({
       method: "POST",
       url: `/1/cards?idList=${listId}&key=${APIKEY}&token=${APITOKEN}`,
       header:'Accept: application/json',
-      body: {name: cardName}
+      body: {name: cardName, isTemplate}
     });
   }
 

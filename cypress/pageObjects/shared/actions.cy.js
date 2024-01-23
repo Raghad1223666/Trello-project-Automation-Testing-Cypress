@@ -29,6 +29,11 @@ class sharedActions {
   backToHomePage(){
     cy.get("[aria-label='Back to home']").click();
   }
+
+  closeTemplatePopup() {
+    cy.get("[aria-label='Close dialog']").click();
+    return this;
+  }
 }
 
 export default sharedActions;

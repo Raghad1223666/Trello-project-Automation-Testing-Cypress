@@ -44,8 +44,7 @@ When("Click on the add card button", () => {
 });
 
 Then("The Card is created successfully", () => {
-  createNewCardAssertion.checkCardIsVisible();
-  createNewCardAssertion.checkCardIsContainCorrectText("Card 1");
+  createNewCardAssertion.checkCardIsVisible().checkCardIsContainCorrectText("Card 1");
 });
 
 After(() => {

@@ -8,6 +8,6 @@ module.exports = defineConfig({
    setupNodeEvents(on, config) {
      on("file:preprocessor", cucumber());
    },
-   screenshotsFolder: "RaghadScreenshots",
+   screenshotsFolder: "raghadScreenshots",
  },
 });

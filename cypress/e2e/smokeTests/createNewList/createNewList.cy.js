@@ -29,6 +29,7 @@ Given("Go to the Board", () => {
   cy.get("@boardResponse").then((response) => {
     sharedAction.visitUrl(response.body.url);
   });
+  cy.screenshot({ capture: "fullPage" });
 });
 
 When("Click on the Add another list", () => {

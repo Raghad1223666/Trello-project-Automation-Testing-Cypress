@@ -15,7 +15,7 @@ let dataUtils = new SharedDataUtils();
 let moveTemplateToAnyListAction = new moveTemplateToAnyListActions();
 let moveTemplateToAnyListAssertion = new moveTemplateToAnyListAssertions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();
@@ -27,7 +27,12 @@ Before(() => {
   });
   // Create New Template
   cy.get("@listsOnBoard").then((response) => {
-    dataUtils.createNewCard(response.body[0].id, "Raghad Template", true);
+    dataUtils.createNewCard(response.body[0].id, "Raghad Template", true).as("cardResponse");
+  });
+
+  cy.get("@cardResponse").then((response) => {
+    cy.log(response.body);
+    dataUtils.cardIntercept(response.body.id);
   });
 });
 
@@ -43,6 +48,7 @@ When("Click on the Template", () => {
 });
 
 When("Click on the Move Label", () => {
+  cy.wait("@cardOpen");
   moveTemplateToAnyListAction.clickOnTheMoveLabel();
 });
 

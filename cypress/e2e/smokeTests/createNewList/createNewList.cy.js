@@ -17,7 +17,7 @@ let dataUtils = new SharedDataUtils();
 let createNewListAction = new createNewListActions();
 let createNewListAssertion = new createNewListAssertions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();

@@ -15,7 +15,7 @@ let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let updateListNameAction = new updateListNameActions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();

@@ -21,11 +21,6 @@ class sharedActions {
     return this;
   }
 
-  boardName() {
-    const radomNumber = Math.floor(Math.random() * 100);
-    return `Board No.${radomNumber}`;
-  }
-
   backToHomePage() {
     cy.get("[aria-label='Back to home']").click();
   }

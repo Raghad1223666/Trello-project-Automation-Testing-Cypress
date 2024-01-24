@@ -15,7 +15,7 @@ let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
 let updateTemplateNameAction = new updateTemplateNameActions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();
@@ -27,8 +27,13 @@ Before(() => {
   });
   // Create New Template
   cy.get("@listsOnBoard").then((response) => {
-    dataUtils.createNewCard(response.body[0].id, "Raghad Template", true);
+    dataUtils.createNewCard(response.body[0].id, "Raghad Template", true).as("cardResponse");
   });
+
+  cy.get("@cardResponse").then((response) => {
+    dataUtils.cardIntercept(response.body.id);
+  });
+  
 });
 
 Given("Go to the Board", () => {
@@ -43,6 +48,7 @@ When("Click on the Template card", () => {
 });
 
 When("Type the new name from Template popup", () => {
+  cy.wait("@cardOpen");
   updateTemplateNameAction.typeNewTemplateName("1{enter}");
 });
 

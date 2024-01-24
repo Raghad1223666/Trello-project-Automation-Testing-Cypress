@@ -31,6 +31,15 @@ class SharedDataUtils {
       body: { name: cardName, isTemplate },
     });
   }
+
+  cardIntercept(cardId){
+   return cy.intercept(`/1/card/${cardId}?fields=id&members=true&member_fields=id`).as("cardOpen");
+  }
+
+  boardName() {
+    const radomNumber = Math.floor(Math.random() * 100);
+    return `Board No.${radomNumber}`;
+  }
 }
 
 export default SharedDataUtils;

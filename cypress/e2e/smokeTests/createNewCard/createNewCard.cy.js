@@ -16,7 +16,7 @@ let sharedAction = new sharedActions();
 let createNewCardAction = new createNewCardActions();
 let createNewCardAssertion = new createNewCardAssertions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();

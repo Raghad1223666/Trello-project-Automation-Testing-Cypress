@@ -15,7 +15,7 @@ let dataUtils = new SharedDataUtils();
 let sharedAssertion = new sharedAssertions();
 let deleteExistingCardAction = new deleteExistingCardActions();
 
-let boardName = sharedAction.boardName();
+let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();
@@ -27,7 +27,11 @@ Before(() => {
   });
   // Create New Card
   cy.get("@listsOnBoardResponse").then((response) => {
-    dataUtils.createNewCard(response.body[0].id, "Raghad Card");
+    dataUtils.createNewCard(response.body[0].id, "Raghad Card").as("cardResponse");
+  });
+
+  cy.get("@cardResponse").then((response) => {
+    dataUtils.cardIntercept(response.body.id);
   });
 });
 
@@ -43,6 +47,7 @@ When("Open the existing card", () => {
 });
 
 When("Click on the Archive Button", () => {
+  cy.wait("@cardOpen");
   deleteExistingCardAction.clickArchiveButton();
 });
 

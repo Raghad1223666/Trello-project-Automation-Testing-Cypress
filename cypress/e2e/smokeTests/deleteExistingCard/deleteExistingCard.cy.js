@@ -35,7 +35,7 @@ Before(() => {
   });
 });
 
-Given("Go to the Board", () => {
+Given("The user navigate to the board", () => {
   cy.wait("@login");
   cy.get("@boardResponse").then((response) => {
     sharedAction.visitUrl(response.body.url);

@@ -23,7 +23,7 @@ Before(() => {
   dataUtils.createNewBoard(boardName).as("boardResponse");
 });
 
-Given("Go the the board", () => {
+Given("The user navigate to the board", () => {
   cy.wait("@login");
   cy.get("@boardResponse").then((response) => {
     sharedAction.visitUrl(response.body.url);

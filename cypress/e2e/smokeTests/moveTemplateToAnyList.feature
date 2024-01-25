@@ -1,7 +1,7 @@
 Feature: Move Template to any list
 
     Scenario: Verify that the user can Move Template to any list successfully
-        Given Go to the Board
+        Given The user navigate to the board
         When Click on the Template
         When Click on the Move Label
         When Click on the List Label

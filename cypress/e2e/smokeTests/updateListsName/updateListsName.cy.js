@@ -7,13 +7,13 @@ import {
 } from "cypress-cucumber-preprocessor/steps";
 import sharedActions from "../../../pageObjects/shared/actions.cy";
 import SharedDataUtils from "../../../pageObjects/shared/dataUtils";
-import updateListNameActions from "../../../pageObjects/updateListName/actions.cy";
-import sharedAssertions from "../../../pageObjects/shared/assertions.cy";
+import updateListsNameActions from "../../../pageObjects/updateListsName/actions.cy";
+import updateListsNameAssertions from "../../../pageObjects/updateListsName/assertions.cy";
 
 let sharedAction = new sharedActions();
-let sharedAssertion = new sharedAssertions();
 let dataUtils = new SharedDataUtils();
-let updateListNameAction = new updateListNameActions();
+let updateListsNameAction = new updateListsNameActions();
+let updateListsNameAssertion = new updateListsNameAssertions();
 
 let boardName = dataUtils.boardName();
 
@@ -30,16 +30,12 @@ Given("The user navigate to the board", () => {
   });
 });
 
-When("Click on the List name", () => {
-  updateListNameAction.clickOnListName();
+When("Click on the lists name and Type the new name", () => {
+  updateListsNameAction.typeListsName(["New{enter}", "In Progress{enter}", "Ready{enter}"]);
 });
 
-When("Type the new name", () => {
-  sharedAction.typeListName("QA Testing{enter}");
-});
-
-Then("The List name is updated correctly", () => {
-  sharedAssertion.checkListNameHasCorrectText("QA Testing");
+Then("The Lists name is updated correctly", () => {
+  updateListsNameAssertion.checkListsNameHasCorrectText(["New", "In Progress", "Ready"]);
 });
 
 After(() => {

@@ -35,9 +35,6 @@ class sharedActions {
     return this;
   }
 
-  typeListName(listName) {
-    cy.get("[data-testid='list-name-textarea']").last().type(listName);
-  }
 }
 
 export default sharedActions;

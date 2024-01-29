@@ -23,6 +23,7 @@ class sharedActions {
 
   backToHomePage() {
     cy.get("[aria-label='Back to home']").click();
+    return this;
   }
 
   closeTemplatePopup() {

@@ -19,7 +19,7 @@ let boardName = dataUtils.boardName();
 
 Before(() => {
   sharedAction.visitUrl("https://trello.com/login").loginToTrello();
-  cy.intercept({ url: "1/lists" }).as("listCreated");
+  cy.intercept("1/lists").as("listCreated");
   // Create Board
   dataUtils.createNewBoard(boardName).as("boardResponse");
 });
@@ -45,8 +45,7 @@ When("Click on the Add list button", () => {
 });
 
 Then("The list Added successfully", () => {
-  createNewListAssertion.checkListIsVisible();
-  createNewListAssertion.checkListNameHasCorrectText("Raghad List");
+  createNewListAssertion.checkListIsVisible().checkListNameHasCorrectText("Raghad List");
 });
 
 After(() => {
@@ -54,7 +53,6 @@ After(() => {
   cy.get("@boardResponse").then((response) => {
     //Delete Board
     dataUtils.deleteCreatedBoard(response.body.id);
-    sharedAction.reloadPage();
-    sharedAction.backToHomePage();
+    sharedAction.reloadPage().backToHomePage();
   });
 });

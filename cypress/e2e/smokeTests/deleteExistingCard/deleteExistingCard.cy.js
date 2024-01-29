@@ -67,7 +67,6 @@ After(() => {
   cy.get("@boardResponse").then((response) => {
     //Delete Board
     dataUtils.deleteCreatedBoard(response.body.id);
-    sharedAction.reloadPage();
-    sharedAction.backToHomePage();
+    sharedAction.reloadPage().backToHomePage();
   });
 });

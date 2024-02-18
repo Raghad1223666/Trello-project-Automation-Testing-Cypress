@@ -6,4 +6,4 @@
 
 ##### I used js, and Page object model design pattern, the project supports Automation testing with cypress, API testing with Postman, screenshot, Cucumber and many of the features are explained in the project description above. 
 
-##### Tool used: Visual studio code IDE, Cypress and Postman.
+##### Tools used: Visual studio code IDE, Cypress and Postman.
